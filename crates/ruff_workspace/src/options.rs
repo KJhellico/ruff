@@ -2834,6 +2834,7 @@ impl IsortOptions {
             from_first,
             length_sort: self.length_sort.unwrap_or(false),
             length_sort_straight: self.length_sort_straight.unwrap_or(false),
+            no_inline_sort: self.no_inline_sort.unwrap_or(false),
         })
     }
 }
