@@ -2605,6 +2605,16 @@ pub struct IsortOptions {
     )]
     pub length_sort_straight: Option<bool>,
 
+    /// Leaves from imports with multiple imports 'as-is' (e.g. from foo import a, c, b).
+    #[option(
+        default = r#"false"#,
+        value_type = "bool",
+        example = r#"
+            no-inline-sort = true
+        "#
+    )]
+    pub no_inline_sort: Option<bool>,
+
     // Tables are required to go last.
     /// A list of mappings from section names to modules.
     ///
