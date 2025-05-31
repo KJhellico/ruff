@@ -44,12 +44,16 @@ pub(crate) fn order_imports<'a>(
                         import_from,
                         comments,
                         trailing_comma,
-                        aliases
-                            .into_iter()
-                            .sorted_by_cached_key(|(alias, _)| {
-                                MemberKey::from_member(alias.name, alias.asname, settings)
-                            })
-                            .collect::<Vec<(AliasData, ImportFromCommentSet)>>(),
+                        if settings.no_inline_sort {
+                            aliases.into_iter().collect::<Vec<(AliasData, ImportFromCommentSet)>>()
+                        } else {
+                            aliases
+                                .into_iter()
+                                .sorted_by_cached_key(|(alias, _)| {
+                                    MemberKey::from_member(alias.name, alias.asname, settings)
+                                })
+                                .collect::<Vec<(AliasData, ImportFromCommentSet)>>()
+                        },
                     )
                 },
             );
